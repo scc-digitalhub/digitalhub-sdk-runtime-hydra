@@ -42,7 +42,7 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/scc-digitalhub/digitalhub-sdk-runtime-python"
+Homepage = "https://github.com/scc-digitalhub/digitalhub-sdk-runtime-hydra"
 
 [tool.ruff]
 line-length = 120
