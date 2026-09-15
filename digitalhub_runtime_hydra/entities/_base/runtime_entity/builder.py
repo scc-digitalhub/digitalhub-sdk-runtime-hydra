@@ -10,98 +10,6 @@ from digitalhub.entities._mixin.runtime_entity.builder import RuntimeEntityBuild
 from digitalhub_runtime_hydra.entities.enums import Actions, EntityKinds
 
 
-class RuntimeEntityBuilderPython(RuntimeEntityBuilder):
-    EXECUTABLE_KIND = EntityKinds.FUNCTION_PYTHON.value
-    TASKS_KINDS = map_actions(
-        [
-            (
-                EntityKinds.TASK_PYTHON_JOB.value,
-                Actions.JOB.value,
-            ),
-            (
-                EntityKinds.TASK_PYTHON_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.TASK_PYTHON_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-    RUN_KINDS = map_actions(
-        [
-            (
-                EntityKinds.RUN_PYTHON_JOB.value,
-                Actions.JOB.value,
-            ),
-            (
-                EntityKinds.RUN_PYTHON_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.RUN_PYTHON_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-
-
-class RuntimeEntityBuilderOpeninference(RuntimeEntityBuilder):
-    EXECUTABLE_KIND = EntityKinds.FUNCTION_OPENINFERENCE.value
-    TASKS_KINDS = map_actions(
-        [
-            (
-                EntityKinds.TASK_OPENINFERENCE_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.TASK_OPENINFERENCE_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-    RUN_KINDS = map_actions(
-        [
-            (
-                EntityKinds.RUN_OPENINFERENCE_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.RUN_OPENINFERENCE_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-
-
-class RuntimeEntityBuilderGuardrail(RuntimeEntityBuilder):
-    EXECUTABLE_KIND = EntityKinds.FUNCTION_GUARDRAIL.value
-    TASKS_KINDS = map_actions(
-        [
-            (
-                EntityKinds.TASK_GUARDRAIL_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.TASK_GUARDRAIL_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-    RUN_KINDS = map_actions(
-        [
-            (
-                EntityKinds.RUN_GUARDRAIL_BUILD.value,
-                Actions.BUILD.value,
-            ),
-            (
-                EntityKinds.RUN_GUARDRAIL_SERVE.value,
-                Actions.SERVE.value,
-            ),
-        ]
-    )
-
-
 class RuntimeEntityBuilderHydra(RuntimeEntityBuilder):
     EXECUTABLE_KIND = EntityKinds.FUNCTION_HYDRA.value
     TASKS_KINDS = map_actions(
@@ -133,33 +41,6 @@ class RuntimeEntityBuilderHydra(RuntimeEntityBuilder):
             (
                 EntityKinds.RUN_HYDRA_SUBTASK.value,
                 Actions.SUBTASK.value,
-            ),
-        ]
-    )
-
-class RuntimeEntityBuilderRay(RuntimeEntityBuilder):
-    EXECUTABLE_KIND = EntityKinds.FUNCTION_RAY.value
-    TASKS_KINDS = map_actions(
-        [
-            (
-                EntityKinds.TASK_RAY_JOB.value,
-                Actions.JOB.value,
-            ),
-            (
-                EntityKinds.TASK_RAY_BUILD.value,
-                Actions.BUILD.value,
-            ),
-        ]
-    )
-    RUN_KINDS = map_actions(
-        [
-            (
-                EntityKinds.RUN_RAY_JOB.value,
-                Actions.JOB.value,
-            ),
-            (
-                EntityKinds.RUN_RAY_BUILD.value,
-                Actions.BUILD.value,
             ),
         ]
     )
