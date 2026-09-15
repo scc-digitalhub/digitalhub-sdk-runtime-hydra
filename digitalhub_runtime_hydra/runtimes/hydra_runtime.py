@@ -9,7 +9,7 @@ import yaml
 from digitalhub.utils.generic_utils import decode_base64_string
 from digitalhub.utils.logger.logger import get_logger
 
-from digitalhub_runtime_hydra.runtimes.runtime import RuntimePython, RuntimePythonJob
+from digitalhub_runtime_python.runtimes.runtime import RuntimePython, RuntimePythonJob
 from digitalhub_runtime_python.utils.configuration import (
     _clone_git_source,
     _download_remote_source,
@@ -59,7 +59,7 @@ class RuntimeHydraJob(RuntimePythonJob):
         fnc, fnc_args = self._configure_execution(spec, run)
 
         logger.info("Executing run.")
-        exec_result = self._execute(fnc, **fnc_args)
+        exec_result =   self._execute(fnc, **fnc_args)
         logger.info("Collecting outputs.")
         named_outputs = self._get_named_outputs(exec_result)
         results = collect_outputs(exec_result, named_outputs, project, run_key)
