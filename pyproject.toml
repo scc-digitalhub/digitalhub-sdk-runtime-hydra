@@ -26,7 +26,7 @@ dependencies = [
 "digitalhub-runtime-python>=0.16.0b, <0.17",
 "hydra-core==1.3.2",
 "omegaconf==2.3.0",
-"hydra-dh-launcher>=0.16.5"
+"hydra-dh-launcher>=0.16.6"
 ]
 
 [project.optional-dependencies]
