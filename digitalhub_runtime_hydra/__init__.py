@@ -13,7 +13,7 @@ try:
         RuntimeHydraSubtaskBuilder,
     )
 
-    runtime_builders = tuple(
+    runtime_builders = (
         (EntityKinds.FUNCTION_HYDRA.value, RuntimeHydraBuilder),
         (EntityKinds.RUN_HYDRA_BUILD.value, RuntimeHydraBuilder),
         (EntityKinds.RUN_HYDRA_JOB.value, RuntimeHydraJobBuilder),
@@ -27,4 +27,4 @@ except ImportError as e:
 
     logger = get_logger(__name__)
     logger.debug(f"Error importing runtime builders: {e}")
-    runtime_builders = tuple()
+    runtime_builders = ()
