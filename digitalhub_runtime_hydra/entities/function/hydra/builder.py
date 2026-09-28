@@ -4,9 +4,10 @@
 
 from __future__ import annotations
 
-from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
-from digitalhub_runtime_hydra.entities.enums import EntityKinds
 from digitalhub_runtime_python.entities.function._base.builder import FunctionBaseBuilder
+
+from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
+from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra, FunctionValidatorHydra
 from digitalhub_runtime_hydra.entities.function.hydra.status import FunctionStatusHydra

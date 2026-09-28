@@ -9,7 +9,6 @@ from pathlib import Path
 from digitalhub.utils.exceptions import EntityError
 from digitalhub.utils.generic_utils import encode_string, read_source
 from digitalhub.utils.uri_utils import has_local_scheme
-
 from digitalhub_runtime_python.entities.function.python.models import Lang
 
 

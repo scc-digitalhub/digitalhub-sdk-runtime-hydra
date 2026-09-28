@@ -1,24 +1,10 @@
 # SPDX-FileCopyrightText: © 2025 DSLab - Fondazione Bruno Kessler
 #
 # SPDX-License-Identifier: Apache-2.0
-from digitalhub_runtime_hydra.entities.enums import EntityKinds
-from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBuilder
-from digitalhub_runtime_hydra.entities.run.hydra_build.builder import RunHydraRunBuildBuilder
-from digitalhub_runtime_hydra.entities.run.hydra_job.builder import RunHydraRunJobBuilder
-from digitalhub_runtime_hydra.entities.run.hydra_subtask.builder import RunHydraRunSubtaskBuilder
-from digitalhub_runtime_hydra.entities.task.hydra_build.builder import TaskHydraBuildBuilder
-from digitalhub_runtime_hydra.entities.task.hydra_job.builder import TaskHydraJobBuilder
-from digitalhub_runtime_hydra.entities.task.hydra_subtask.builder import TaskHydraSubtaskBuilder
+from digitalhub_runtime_hydra.entities import entity_plugins
+from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 
-entity_builders = (
-    (EntityKinds.FUNCTION_HYDRA.value, FunctionHydraBuilder),
-    (EntityKinds.RUN_HYDRA_BUILD.value, RunHydraRunBuildBuilder),
-    (EntityKinds.RUN_HYDRA_JOB.value, RunHydraRunJobBuilder),
-    (EntityKinds.RUN_HYDRA_SUBTASK.value, RunHydraRunSubtaskBuilder),
-    (EntityKinds.TASK_HYDRA_BUILD.value, TaskHydraBuildBuilder),
-    (EntityKinds.TASK_HYDRA_JOB.value, TaskHydraJobBuilder),
-    (EntityKinds.TASK_HYDRA_SUBTASK.value, TaskHydraSubtaskBuilder),
-)
+entity_builders = tuple((plugin.kind, plugin.builder) for plugin in entity_plugins)
 
 try:
     from digitalhub_runtime_hydra.runtimes.builder import (
@@ -27,7 +13,7 @@ try:
         RuntimeHydraSubtaskBuilder,
     )
 
-    runtime_builders = (
+    runtime_builders = tuple(
         (EntityKinds.FUNCTION_HYDRA.value, RuntimeHydraBuilder),
         (EntityKinds.RUN_HYDRA_BUILD.value, RuntimeHydraBuilder),
         (EntityKinds.RUN_HYDRA_JOB.value, RuntimeHydraJobBuilder),
@@ -41,4 +27,4 @@ except ImportError as e:
 
     logger = get_logger(__name__)
     logger.debug(f"Error importing runtime builders: {e}")
-    runtime_builders = ()
+    runtime_builders = tuple()

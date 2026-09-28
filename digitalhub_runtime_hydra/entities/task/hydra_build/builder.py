@@ -7,7 +7,7 @@ from __future__ import annotations
 from digitalhub.entities.task._base.builder import TaskBuilder
 
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
-from digitalhub_runtime_hydra.entities.enums import EntityKinds
+from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.task.hydra_build.entity import TaskHydraBuild
 from digitalhub_runtime_hydra.entities.task.hydra_build.spec import TaskSpecHydraBuild, TaskValidatorHydraBuild
 from digitalhub_runtime_hydra.entities.task.hydra_build.status import TaskStatusHydraBuild

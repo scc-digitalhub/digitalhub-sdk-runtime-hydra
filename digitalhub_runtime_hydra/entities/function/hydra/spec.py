@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from digitalhub.entities.function._base.spec import FunctionSpec, FunctionValidator
+from digitalhub_runtime_python.entities.function.python.models import PythonVersion
 
 from digitalhub_runtime_hydra.entities.function.hydra.models import ConfigValidator, SourceValidator
-from digitalhub_runtime_python.entities.function.python.models import PythonVersion
 
 
 class FunctionSpecHydra(FunctionSpec):

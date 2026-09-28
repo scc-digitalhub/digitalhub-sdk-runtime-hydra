@@ -12,6 +12,7 @@ from digitalhub_runtime_hydra.runtimes.hydra_runtime import (
     RuntimeHydraSubtask,
 )
 
+
 class RuntimeHydraBuilder(RuntimeBuilder):
     """RuntimeHydraBuilder class."""
 
