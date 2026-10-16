@@ -40,7 +40,29 @@ def new_function_hydra(
     labels: list[str] | None = None,
     embedded: bool = False,
 ) -> FunctionHydra:
-    """Create a Hydra function entity."""
+    """
+    Create a Hydra function entity.
+
+    Examples
+    --------
+    Create a Hydra function from its application and configuration files:
+
+    ```python
+    import digitalhub as dh
+
+    function = dh.new_function_hydra(
+        project="my-project",
+        name="hydra-training",
+        code_src="./example/my_app.py",
+        config_src="./example/config-dh.yaml",
+        python_version="PYTHON3_13",
+        handler="my_app",
+        init_function="init",
+        complete_function="complete",
+        requirements=["hydra-optuna-sweeper==1.2.0"],
+    )
+    ```
+    """
     return new_function(
         project=project,
         name=name,
