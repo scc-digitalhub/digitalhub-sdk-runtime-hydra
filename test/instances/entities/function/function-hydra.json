@@ -1,0 +1,36 @@
+{
+    "id": "hydra-function1",
+    "key": "store://demo-etl/function/hydra/hydra-function1",
+    "kind": "hydra",
+    "metadata": {
+        "name": "hydra-function1",
+        "project": "demo-etl"
+    },
+    "name": "hydra-function1",
+    "project": "demo-etl",
+    "spec": {
+        "image": "python:3.10-slim",
+        "base_image": "python:3.10-slim",
+        "python_version": "PYTHON3_10",
+        "requirements": [
+            "hydra-core==1.3.2"
+        ],
+        "source": {
+            "source": "train.py",
+            "handler": "train",
+            "init_function": "initialize",
+            "complete_function": "complete",
+            "base64": "ZGVmIHRyYWluKCk6CiAgICBwYXNzCg==",
+            "lang": "python"
+        },
+        "config": {
+            "source": "conf/config.yaml",
+            "path": "conf/config.yaml",
+            "base64": "bWF4X2Vwb2NoczogMTAK"
+        }
+    },
+    "status": {
+        "state": "CREATED"
+    },
+    "user": "digitalhubdev"
+}

@@ -1,0 +1,42 @@
+{
+    "id": "hydra-build-task1",
+    "key": "store://demo-etl/task/hydra+build/hydra-build-task1",
+    "kind": "hydra+build",
+    "metadata": {
+        "name": "hydra-build-task1",
+        "project": "demo-etl"
+    },
+    "name": "hydra-build-task1",
+    "project": "demo-etl",
+    "spec": {
+        "function": "hydra://demo-etl/hydra-function1",
+        "volumes": [
+            {
+                "volume_type": "empty_dir",
+                "name": "scratch",
+                "mount_path": "/tmp"
+            }
+        ],
+        "resources": {
+            "cpu": "1",
+            "mem": "1Gi"
+        },
+        "envs": [
+            {
+                "name": "MODE",
+                "value": "build"
+            }
+        ],
+        "secrets": [
+            "training-token"
+        ],
+        "profile": "1xa100",
+        "instructions": [
+            "pip install hydra-core==1.3.2"
+        ]
+    },
+    "status": {
+        "state": "CREATED"
+    },
+    "user": "digitalhubdev"
+}

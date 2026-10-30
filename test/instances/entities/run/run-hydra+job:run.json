@@ -1,0 +1,47 @@
+{
+    "id": "hydra-job-run1",
+    "key": "store://demo-etl/run/hydra+job:run/hydra-job-run1",
+    "kind": "hydra+job:run",
+    "metadata": {
+        "name": "hydra-job-run1",
+        "project": "demo-etl"
+    },
+    "name": "hydra-job-run1",
+    "project": "demo-etl",
+    "spec": {
+        "task": "hydra+job://demo-etl/hydra-job-task1",
+        "function": "hydra://demo-etl/hydra-function1",
+        "volumes": [
+            {
+                "volume_type": "empty_dir",
+                "name": "scratch",
+                "mount_path": "/tmp"
+            }
+        ],
+        "resources": {
+            "cpu": "1",
+            "mem": "1Gi"
+        },
+        "envs": [
+            {
+                "name": "MODE",
+                "value": "train"
+            }
+        ],
+        "secrets": [
+            "training-token"
+        ],
+        "profile": "1xa100",
+        "parameters": {
+            "epochs": 10
+        },
+        "init_parameters": {
+            "seed": 42
+        },
+        "workers": 2
+    },
+    "status": {
+        "state": "CREATED"
+    },
+    "user": "digitalhubdev"
+}

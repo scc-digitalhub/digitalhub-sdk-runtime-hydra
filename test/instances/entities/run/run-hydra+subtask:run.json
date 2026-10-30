@@ -1,0 +1,44 @@
+{
+    "id": "hydra-subtask-run1",
+    "key": "store://demo-etl/run/hydra+subtask:run/hydra-subtask-run1",
+    "kind": "hydra+subtask:run",
+    "metadata": {
+        "name": "hydra-subtask-run1",
+        "project": "demo-etl"
+    },
+    "name": "hydra-subtask-run1",
+    "project": "demo-etl",
+    "spec": {
+        "task": "hydra+subtask://demo-etl/hydra-subtask-task1",
+        "function": "hydra://demo-etl/hydra-function1",
+        "volumes": [
+            {
+                "volume_type": "empty_dir",
+                "name": "scratch",
+                "mount_path": "/tmp"
+            }
+        ],
+        "resources": {
+            "cpu": "1",
+            "mem": "1Gi"
+        },
+        "envs": [
+            {
+                "name": "MODE",
+                "value": "subtask"
+            }
+        ],
+        "secrets": [
+            "training-token"
+        ],
+        "profile": "1xa100",
+        "parameters": {
+            "fold": 1
+        },
+        "job_ref": "hydra+job:run://demo-etl/hydra-job-run1"
+    },
+    "status": {
+        "state": "CREATED"
+    },
+    "user": "digitalhubdev"
+}
