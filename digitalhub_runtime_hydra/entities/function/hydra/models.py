@@ -4,17 +4,8 @@
 
 from __future__ import annotations
 
-from enum import Enum
-
+from digitalhub_runtime_python.entities.function._base.models import Lang
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Lang(Enum):
-    """
-    Source code language.
-    """
-
-    PYTHON = "python"
 
 
 class SourceValidator(BaseModel):

@@ -4,13 +4,12 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.function._base.spec import FunctionSpec, FunctionValidator
-from digitalhub_runtime_python.entities.function.python.models import PythonVersion
+from digitalhub_runtime_python.entities.function._base.spec import FunctionBaseSpec, FunctionBaseValidator
 
 from digitalhub_runtime_hydra.entities.function.hydra.models import ConfigValidator, SourceValidator
 
 
-class FunctionSpecHydra(FunctionSpec):
+class FunctionSpecHydra(FunctionBaseSpec):
     """
     FunctionSpecHydra specifications.
     """
@@ -24,17 +23,17 @@ class FunctionSpecHydra(FunctionSpec):
         python_version: str | None = None,
         requirements: list | None = None,
     ) -> None:
-        super().__init__()
-
-        self.image = image
-        self.base_image = base_image
-        self.python_version = python_version
-        self.requirements = requirements
-        self.source = source
+        super().__init__(
+            source=source,
+            image=image,
+            base_image=base_image,
+            python_version=python_version,
+            requirements=requirements,
+        )
         self.config = config
 
 
-class FunctionValidatorHydra(FunctionValidator):
+class FunctionValidatorHydra(FunctionBaseValidator[SourceValidator]):
     """
     FunctionValidatorHydra validator.
     """
@@ -44,15 +43,3 @@ class FunctionValidatorHydra(FunctionValidator):
 
     config: ConfigValidator
     """Config validator"""
-
-    python_version: PythonVersion
-    "Python version"
-
-    image: str | None = None
-    "Image where the function will be executed"
-
-    base_image: str | None = None
-    "Base image used to build the image where the function will be executed"
-
-    requirements: list[str] | str | None = None
-    "Requirements list to be installed in the image where the function will be executed"
