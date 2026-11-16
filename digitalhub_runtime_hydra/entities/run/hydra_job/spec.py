@@ -4,12 +4,12 @@
 
 from __future__ import annotations
 
+from digitalhub.entities.run._base.spec import LocalExecutionSpecMixin
 from digitalhub_runtime_python.entities.run._base.spec import RunSpecPython
 
 
-class RunSpecHydraRunJob(RunSpecPython):
+class RunSpecHydraRunJob(RunSpecPython, LocalExecutionSpecMixin):
     """RunSpecHydraRunJob specifications."""
 
-    local_execution: bool = False
     config: dict | None = None
     workers: int | None = None

@@ -4,8 +4,9 @@
 
 from __future__ import annotations
 
+from digitalhub.entities.task._base.spec import BuildSpecMixin
 from digitalhub_runtime_python.entities.run._base.spec import RunSpecPython
 
 
-class RunSpecHydraRunBuild(RunSpecPython):
+class RunSpecHydraRunBuild(RunSpecPython, BuildSpecMixin):
     """RunSpecHydraRunBuild specifications."""

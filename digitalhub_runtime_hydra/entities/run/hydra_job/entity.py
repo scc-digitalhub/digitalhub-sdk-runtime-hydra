@@ -13,7 +13,10 @@ if typing.TYPE_CHECKING:
     from digitalhub_runtime_hydra.entities.run.hydra_job.status import RunStatusHydraRunJob
 
 
-class RunHydraRunJob(RunBaseRun):
+from digitalhub.entities.run._base.entity import LocalExecutionRunMixin
+
+
+class RunHydraRunJob(LocalExecutionRunMixin, RunBaseRun):
     """
     RunHydraRunJob class.
     """
@@ -23,17 +26,6 @@ class RunHydraRunJob(RunBaseRun):
 
         self.spec: RunSpecHydraRunJob
         self.status: RunStatusHydraRunJob
-
-    def local_execution(self) -> bool:
-        """
-        Check if run has local execution.
-
-        Returns
-        -------
-        bool
-            True if run has local execution, False otherwise.
-        """
-        return self.spec.local_execution
 
     def add_output(self, name: str, value: str) -> None:
         """

@@ -4,10 +4,8 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import TaskSpecFunction
+from digitalhub.entities.task._base.spec import BuildSpecMixin, TaskSpecFunction
 
 
-class TaskSpecHydraBuild(TaskSpecFunction):
+class TaskSpecHydraBuild(TaskSpecFunction, BuildSpecMixin):
     """TaskSpecHydraBuild specifications."""
-
-    instructions: list[str] | None = None
