@@ -11,7 +11,6 @@ from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.run.hydra_subtask.entity import RunHydraRunSubtask
 from digitalhub_runtime_hydra.entities.run.hydra_subtask.spec import (
     RunSpecHydraRunSubtask,
-    RunValidatorHydraRunSubtask,
 )
 from digitalhub_runtime_hydra.entities.run.hydra_subtask.status import RunStatusHydraRunSubtask
 
@@ -23,7 +22,6 @@ class RunHydraRunSubtaskBuilder(RunBuilder, RuntimeEntityBuilderHydra):
 
     ENTITY_CLASS = RunHydraRunSubtask
     ENTITY_SPEC_CLASS = RunSpecHydraRunSubtask
-    ENTITY_SPEC_VALIDATOR = RunValidatorHydraRunSubtask
     ENTITY_STATUS_CLASS = RunStatusHydraRunSubtask
     ENTITY_KIND = EntityKinds.RUN_HYDRA_SUBTASK.value
 

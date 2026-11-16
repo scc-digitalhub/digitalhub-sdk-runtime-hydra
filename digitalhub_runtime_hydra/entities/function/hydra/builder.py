@@ -9,7 +9,7 @@ from digitalhub_runtime_python.entities.function._base.builder import FunctionBa
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
-from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra, FunctionValidatorHydra
+from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 from digitalhub_runtime_hydra.entities.function.hydra.status import FunctionStatusHydra
 from digitalhub_runtime_hydra.entities.function.hydra.utils import config_check, source_check
 
@@ -21,7 +21,6 @@ class FunctionHydraBuilder(FunctionBaseBuilder, RuntimeEntityBuilderHydra):
 
     ENTITY_CLASS = FunctionHydra
     ENTITY_SPEC_CLASS = FunctionSpecHydra
-    ENTITY_SPEC_VALIDATOR = FunctionValidatorHydra
     ENTITY_STATUS_CLASS = FunctionStatusHydra
     ENTITY_KIND = EntityKinds.FUNCTION_HYDRA.value
 

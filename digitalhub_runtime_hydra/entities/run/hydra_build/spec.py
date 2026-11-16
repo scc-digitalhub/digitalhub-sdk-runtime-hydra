@@ -4,12 +4,8 @@
 
 from __future__ import annotations
 
-from digitalhub_runtime_python.entities.run._base.spec import RunSpecBaseRun, RunValidatorBaseRun
+from digitalhub_runtime_python.entities.run._base.spec import RunSpecPython
 
 
-class RunSpecHydraRunBuild(RunSpecBaseRun):
+class RunSpecHydraRunBuild(RunSpecPython):
     """RunSpecHydraRunBuild specifications."""
-
-
-class RunValidatorHydraRunBuild(RunValidatorBaseRun):
-    """RunValidatorHydraRunBuild validator."""

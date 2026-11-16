@@ -4,16 +4,10 @@
 
 from __future__ import annotations
 
-from digitalhub.entities.task._base.spec import TaskSpecFunction, TaskValidatorFunction
+from digitalhub.entities.task._base.spec import TaskSpecFunction
 
 
 class TaskSpecHydraSubtask(TaskSpecFunction):
     """
     TaskSpecHydraSubtask specifications.
-    """
-
-
-class TaskValidatorHydraSubtask(TaskValidatorFunction):
-    """
-    TaskValidatorHydraSubtask validator.
     """
