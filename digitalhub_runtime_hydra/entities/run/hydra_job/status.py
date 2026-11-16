@@ -6,8 +6,4 @@ from __future__ import annotations
 
 from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
 
-
-class RunStatusHydraRunJob(RunStatusBaseRun):
-    """
-    RunStatusHydraRunJob status.
-    """
+RunStatusHydraRunJob = RunStatusBaseRun

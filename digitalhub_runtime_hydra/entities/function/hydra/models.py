@@ -4,37 +4,17 @@
 
 from __future__ import annotations
 
-from digitalhub_runtime_python.entities.function._base.models import Lang
-from pydantic import BaseModel, ConfigDict, Field
+from digitalhub_runtime_python.entities.function._base.models import PythonSourceCode
+from pydantic import BaseModel, ConfigDict
 
 
-class SourceValidator(BaseModel):
-    """
-    Source code params.
-    """
+class HydraSourceCode(PythonSourceCode):
+    """Source code model for Hydra functions."""
 
-    model_config = ConfigDict(use_enum_values=True)
+    complete_function: str | None = None
 
-    source: str = None
-    "Pointer to source code."
 
-    handler: str = None
-    "Function entrypoint."
-
-    init_function: str = None
-    """Handler for init function."""
-
-    complete_function: str = None
-    """Handler for complete function."""
-
-    code: str = None
-    "Source code (plain text)."
-
-    base64: str = None
-    "Source code (base64 encoded)."
-
-    lang: Lang = Field(default=Lang.PYTHON.value)
-    "Source code language (hint)."
+SourceValidator = HydraSourceCode
 
 
 class ConfigValidator(BaseModel):
@@ -44,11 +24,11 @@ class ConfigValidator(BaseModel):
 
     model_config = ConfigDict(use_enum_values=True)
 
-    source: str = None
+    source: str | None = None
     "Pointer to source code."
 
-    path: str = None
+    path: str | None = None
     "Config path."
 
-    base64: str = None
+    base64: str | None = None
     "Config (base64 encoded)."

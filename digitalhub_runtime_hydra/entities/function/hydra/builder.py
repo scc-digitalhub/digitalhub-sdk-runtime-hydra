@@ -11,7 +11,7 @@ from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 from digitalhub_runtime_hydra.entities.function.hydra.status import FunctionStatusHydra
-from digitalhub_runtime_hydra.entities.function.hydra.utils import config_check, source_check
+from digitalhub_runtime_hydra.entities.function.hydra.utils import config_check
 
 
 class FunctionHydraBuilder(FunctionBaseBuilder, RuntimeEntityBuilderHydra):
@@ -25,7 +25,4 @@ class FunctionHydraBuilder(FunctionBaseBuilder, RuntimeEntityBuilderHydra):
     ENTITY_KIND = EntityKinds.FUNCTION_HYDRA.value
 
     def _prepare_kwargs(self, kwargs: dict) -> dict:
-        return config_check(**source_check(**kwargs))
-
-    def _prepare_source(self, source: dict) -> dict:
-        return source_check(source=source)["source"]
+        return config_check(**kwargs)

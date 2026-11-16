@@ -6,8 +6,4 @@ from __future__ import annotations
 
 from digitalhub.entities.task._base.spec import TaskSpecFunction
 
-
-class TaskSpecHydraSubtask(TaskSpecFunction):
-    """
-    TaskSpecHydraSubtask specifications.
-    """
+TaskSpecHydraSubtask = TaskSpecFunction
