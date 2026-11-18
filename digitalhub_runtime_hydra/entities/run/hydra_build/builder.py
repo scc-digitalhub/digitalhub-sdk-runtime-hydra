@@ -5,12 +5,12 @@
 from __future__ import annotations
 
 from digitalhub.entities.run._base.builder import RunBuilder
+from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
 
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.run.hydra_build.entity import RunHydraRunBuild
 from digitalhub_runtime_hydra.entities.run.hydra_build.spec import RunSpecHydraRunBuild
-from digitalhub_runtime_hydra.entities.run.hydra_build.status import RunStatusHydraRunBuild
 
 
 class RunHydraRunBuildBuilder(RunBuilder, RuntimeEntityBuilderHydra):
@@ -20,5 +20,5 @@ class RunHydraRunBuildBuilder(RunBuilder, RuntimeEntityBuilderHydra):
 
     ENTITY_CLASS = RunHydraRunBuild
     ENTITY_SPEC_CLASS = RunSpecHydraRunBuild
-    ENTITY_STATUS_CLASS = RunStatusHydraRunBuild
+    ENTITY_STATUS_CLASS = RunStatusBaseRun
     ENTITY_KIND = EntityKinds.RUN_HYDRA_BUILD.value

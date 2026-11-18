@@ -9,8 +9,9 @@ import typing
 from digitalhub_runtime_python.entities.run._base.entity import RunBaseRun
 
 if typing.TYPE_CHECKING:
+    from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
+
     from digitalhub_runtime_hydra.entities.run.hydra_job.spec import RunSpecHydraRunJob
-    from digitalhub_runtime_hydra.entities.run.hydra_job.status import RunStatusHydraRunJob
 
 
 from digitalhub.entities.run._base.entity import LocalExecutionRunMixin
@@ -25,7 +26,7 @@ class RunHydraRunJob(LocalExecutionRunMixin, RunBaseRun):
         super().__init__(*args, **kwargs)
 
         self.spec: RunSpecHydraRunJob
-        self.status: RunStatusHydraRunJob
+        self.status: RunStatusBaseRun
 
     def add_output(self, name: str, value: str) -> None:
         """

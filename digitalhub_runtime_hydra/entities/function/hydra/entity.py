@@ -9,8 +9,9 @@ import typing
 from digitalhub_runtime_python.entities.function._base.entity import FunctionBaseFunction
 
 if typing.TYPE_CHECKING:
+    from digitalhub.entities._base.entity.status import Status
+
     from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
-    from digitalhub_runtime_hydra.entities.function.hydra.status import FunctionStatusHydra
 
 
 class FunctionHydra(FunctionBaseFunction):
@@ -22,4 +23,4 @@ class FunctionHydra(FunctionBaseFunction):
         super().__init__(*args, **kwargs)
 
         self.spec: FunctionSpecHydra
-        self.status: FunctionStatusHydra
+        self.status: Status

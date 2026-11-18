@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from digitalhub.entities.run._base.builder import RunBuilder
+from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
 
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
@@ -12,7 +13,6 @@ from digitalhub_runtime_hydra.entities.run.hydra_subtask.entity import RunHydraR
 from digitalhub_runtime_hydra.entities.run.hydra_subtask.spec import (
     RunSpecHydraRunSubtask,
 )
-from digitalhub_runtime_hydra.entities.run.hydra_subtask.status import RunStatusHydraRunSubtask
 
 
 class RunHydraRunSubtaskBuilder(RunBuilder, RuntimeEntityBuilderHydra):
@@ -22,7 +22,7 @@ class RunHydraRunSubtaskBuilder(RunBuilder, RuntimeEntityBuilderHydra):
 
     ENTITY_CLASS = RunHydraRunSubtask
     ENTITY_SPEC_CLASS = RunSpecHydraRunSubtask
-    ENTITY_STATUS_CLASS = RunStatusHydraRunSubtask
+    ENTITY_STATUS_CLASS = RunStatusBaseRun
     ENTITY_KIND = EntityKinds.RUN_HYDRA_SUBTASK.value
 
     def build_spec(self, **kwargs) -> RunSpecHydraRunSubtask:

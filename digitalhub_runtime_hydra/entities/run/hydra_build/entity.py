@@ -9,8 +9,9 @@ import typing
 from digitalhub_runtime_python.entities.run._base.entity import RunBaseRun
 
 if typing.TYPE_CHECKING:
+    from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
+
     from digitalhub_runtime_hydra.entities.run.hydra_build.spec import RunSpecHydraRunBuild
-    from digitalhub_runtime_hydra.entities.run.hydra_build.status import RunStatusHydraRunBuild
 
 
 class RunHydraRunBuild(RunBaseRun):
@@ -22,4 +23,4 @@ class RunHydraRunBuild(RunBaseRun):
         super().__init__(*args, **kwargs)
 
         self.spec: RunSpecHydraRunBuild
-        self.status: RunStatusHydraRunBuild
+        self.status: RunStatusBaseRun
