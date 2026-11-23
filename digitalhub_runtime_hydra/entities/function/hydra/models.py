@@ -14,12 +14,9 @@ class HydraSourceCode(PythonSourceCode):
     complete_function: str | None = None
 
 
-SourceValidator = HydraSourceCode
-
-
-class ConfigValidator(BaseModel):
+class HydraConfig(BaseModel):
     """
-    Config params.
+    Hydra function configuration.
     """
 
     model_config = ConfigDict(use_enum_values=True)

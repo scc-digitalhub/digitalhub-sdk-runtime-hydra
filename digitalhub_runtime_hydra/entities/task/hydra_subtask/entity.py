@@ -9,8 +9,8 @@ import typing
 from digitalhub.entities.task._base.entity import Task
 
 if typing.TYPE_CHECKING:
-    from digitalhub_runtime_hydra.entities.task.hydra_subtask.spec import TaskSpecHydraSubtask
-    from digitalhub_runtime_hydra.entities.task.hydra_subtask.status import TaskStatusHydraSubtask
+    from digitalhub.entities._base.entity.status import Status
+    from digitalhub.entities.task._base.spec import TaskSpecFunction
 
 
 class TaskHydraSubtask(Task):
@@ -21,5 +21,5 @@ class TaskHydraSubtask(Task):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self.spec: TaskSpecHydraSubtask
-        self.status: TaskStatusHydraSubtask
+        self.spec: TaskSpecFunction
+        self.status: Status

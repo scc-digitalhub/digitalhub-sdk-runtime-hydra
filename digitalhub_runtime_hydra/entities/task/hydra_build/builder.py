@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
+from digitalhub.entities._base.entity.status import Status
 from digitalhub.entities.task._base.builder import TaskBuilder
 
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.task.hydra_build.entity import TaskHydraBuild
 from digitalhub_runtime_hydra.entities.task.hydra_build.spec import TaskSpecHydraBuild
-from digitalhub_runtime_hydra.entities.task.hydra_build.status import TaskStatusHydraBuild
 
 
 class TaskHydraBuildBuilder(TaskBuilder, RuntimeEntityBuilderHydra):
@@ -20,5 +20,5 @@ class TaskHydraBuildBuilder(TaskBuilder, RuntimeEntityBuilderHydra):
 
     ENTITY_CLASS = TaskHydraBuild
     ENTITY_SPEC_CLASS = TaskSpecHydraBuild
-    ENTITY_STATUS_CLASS = TaskStatusHydraBuild
+    ENTITY_STATUS_CLASS = Status
     ENTITY_KIND = EntityKinds.TASK_HYDRA_BUILD.value

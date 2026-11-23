@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from digitalhub_runtime_python.entities.function._base.spec import FunctionBaseSpec
 
-from digitalhub_runtime_hydra.entities.function.hydra.models import ConfigValidator, HydraSourceCode
+from digitalhub_runtime_hydra.entities.function.hydra.models import HydraConfig, HydraSourceCode
 
 
 class FunctionSpecHydra(FunctionBaseSpec):
@@ -15,4 +15,4 @@ class FunctionSpecHydra(FunctionBaseSpec):
     """
 
     source: HydraSourceCode
-    config: ConfigValidator
+    config: HydraConfig

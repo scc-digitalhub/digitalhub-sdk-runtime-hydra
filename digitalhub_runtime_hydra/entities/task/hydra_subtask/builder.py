@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
+from digitalhub.entities._base.entity.status import Status
 from digitalhub.entities.task._base.builder import TaskBuilder
+from digitalhub.entities.task._base.spec import TaskSpecFunction
 
 from digitalhub_runtime_hydra.entities._base.runtime_entity.builder import RuntimeEntityBuilderHydra
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.task.hydra_subtask.entity import TaskHydraSubtask
-from digitalhub_runtime_hydra.entities.task.hydra_subtask.spec import TaskSpecHydraSubtask
-from digitalhub_runtime_hydra.entities.task.hydra_subtask.status import TaskStatusHydraSubtask
 
 
 class TaskHydraSubtaskBuilder(TaskBuilder, RuntimeEntityBuilderHydra):
@@ -19,6 +19,6 @@ class TaskHydraSubtaskBuilder(TaskBuilder, RuntimeEntityBuilderHydra):
     """
 
     ENTITY_CLASS = TaskHydraSubtask
-    ENTITY_SPEC_CLASS = TaskSpecHydraSubtask
-    ENTITY_STATUS_CLASS = TaskStatusHydraSubtask
+    ENTITY_SPEC_CLASS = TaskSpecFunction
+    ENTITY_STATUS_CLASS = Status
     ENTITY_KIND = EntityKinds.TASK_HYDRA_SUBTASK.value

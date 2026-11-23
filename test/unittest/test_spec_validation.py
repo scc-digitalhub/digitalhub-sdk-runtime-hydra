@@ -12,7 +12,7 @@ from pydantic import ValidationError
 
 from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBuilder
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
-from digitalhub_runtime_hydra.entities.function.hydra.models import ConfigValidator, SourceValidator
+from digitalhub_runtime_hydra.entities.function.hydra.models import HydraConfig, HydraSourceCode
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 from digitalhub_runtime_hydra.entities.run.hydra_job.builder import RunHydraRunJobBuilder
 from digitalhub_runtime_hydra.entities.task.hydra_build.builder import TaskHydraBuildBuilder
@@ -24,12 +24,12 @@ def test_function_spec_validates_nested_source_and_config_models() -> None:
         config={"path": "config.yaml"},
     )
 
-    assert isinstance(spec.source, SourceValidator)
-    assert isinstance(spec.config, ConfigValidator)
+    assert isinstance(spec.source, HydraSourceCode)
+    assert isinstance(spec.config, HydraConfig)
 
 
 def test_hydra_export_restores_typed_config_after_export(monkeypatch, tmp_path) -> None:
-    config = ConfigValidator(path="config.yaml", base64="Y29uZmln")
+    config = HydraConfig(path="config.yaml", base64="Y29uZmln")
     function = object.__new__(FunctionHydra)
     function.spec = FunctionSpecHydra(
         source={"source": "remote-source", "handler": "main"},
@@ -80,14 +80,14 @@ def test_task_spec_validates_build_instructions() -> None:
 
 def test_run_spec_keeps_run_fields_separate_from_task_fields() -> None:
     builder = RunHydraRunJobBuilder()
-    spec = builder.build_spec(task="task", inputs={}, parameters={}, config={}, workers=2)
+    spec = builder.build_spec(function="function", task="task", inputs={}, parameters={}, config={}, workers=2)
 
     assert spec.inputs == {}
     assert spec.parameters == {}
     assert spec.workers == 2
 
     with pytest.raises(TypeError, match="instructions"):
-        builder.build_spec(task="task", instructions=["install"])
+        builder.build_spec(function="function", task="task", instructions=["install"])
 
     with pytest.raises(TypeError, match="replicas"):
-        builder.build_spec(task="task", replicas=1)
+        builder.build_spec(function="function", task="task", replicas=1)
