@@ -14,7 +14,7 @@ if typing.TYPE_CHECKING:
     from digitalhub_runtime_hydra.entities.run.hydra_job.spec import RunSpecHydraRunJob
 
 
-from digitalhub.entities.run._base.entity import LocalExecutionRunMixin
+from digitalhub.plugins import LocalExecutionRunMixin
 
 
 class RunHydraRunJob(LocalExecutionRunMixin, RunBaseRun):

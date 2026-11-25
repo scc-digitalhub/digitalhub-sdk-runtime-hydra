@@ -7,7 +7,7 @@ from unittest.mock import Mock
 
 import digitalhub_runtime_python.entities.function._base.entity as python_entity_module
 import pytest
-from digitalhub.entities.function._base.entity import Function
+from digitalhub.plugins import Function
 from pydantic import ValidationError
 
 from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBuilder
