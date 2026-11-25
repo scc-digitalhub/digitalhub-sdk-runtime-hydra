@@ -8,7 +8,7 @@ import typing
 
 from digitalhub.entities.function.crud import new_function
 
-from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBuilder
+from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 
 if typing.TYPE_CHECKING:
     from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
@@ -66,7 +66,7 @@ def new_function_hydra(
     return new_function(
         project=project,
         name=name,
-        kind=FunctionHydraBuilder.ENTITY_KIND,
+        kind=EntityKinds.FUNCTION_HYDRA.value,
         uuid=uuid,
         version=version,
         description=description,

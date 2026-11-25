@@ -7,19 +7,18 @@ from unittest.mock import Mock
 
 import digitalhub_runtime_python.entities.function._base.entity as python_entity_module
 import pytest
+from digitalhub.factory.registry import registry
 from digitalhub.plugins import Function
 from pydantic import ValidationError
 
-from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBuilder
+from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.models import HydraConfig, HydraSourceCode
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
-from digitalhub_runtime_hydra.entities.run.hydra_job.builder import RunHydraRunJobBuilder
-from digitalhub_runtime_hydra.entities.task.hydra_build.builder import TaskHydraBuildBuilder
 
 
 def test_function_spec_validates_nested_source_and_config_models() -> None:
-    spec = FunctionHydraBuilder().build_spec(
+    spec = registry.get_entity_builder(EntityKinds.FUNCTION_HYDRA.value).build_spec(
         source={"source": "main.py", "handler": "main"},
         config={"path": "config.yaml"},
     )
@@ -50,7 +49,7 @@ def test_hydra_export_restores_typed_config_after_export(monkeypatch, tmp_path) 
 
 
 def test_hydra_builder_preserves_config_check_with_source_mixin() -> None:
-    builder = FunctionHydraBuilder()
+    builder = registry.get_entity_builder(EntityKinds.FUNCTION_HYDRA.value)
 
     function = builder.build(
         kind=builder.ENTITY_KIND,
@@ -70,16 +69,20 @@ def test_hydra_builder_preserves_config_check_with_source_mixin() -> None:
 
 
 def test_task_spec_validates_build_instructions() -> None:
-    spec = TaskHydraBuildBuilder().build_spec(function="function", instructions=["install"])
+    spec = registry.get_entity_builder(EntityKinds.TASK_HYDRA_BUILD.value).build_spec(
+        function="function", instructions=["install"]
+    )
 
     assert spec.instructions == ["install"]
 
     with pytest.raises(ValidationError):
-        TaskHydraBuildBuilder().build_spec(function="function", instructions=[1])
+        registry.get_entity_builder(EntityKinds.TASK_HYDRA_BUILD.value).build_spec(
+            function="function", instructions=[1]
+        )
 
 
 def test_run_spec_keeps_run_fields_separate_from_task_fields() -> None:
-    builder = RunHydraRunJobBuilder()
+    builder = registry.get_entity_builder(EntityKinds.RUN_HYDRA_JOB.value)
     spec = builder.build_spec(function="function", task="task", inputs={}, parameters={}, config={}, workers=2)
 
     assert spec.inputs == {}
