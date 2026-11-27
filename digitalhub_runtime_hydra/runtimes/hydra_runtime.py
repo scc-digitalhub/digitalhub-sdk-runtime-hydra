@@ -11,8 +11,6 @@ from digitalhub.utils.generic_utils import decode_base64_string
 from digitalhub.utils.logger.logger import get_logger
 from digitalhub_runtime_python.runtimes.runtime import RuntimePython, RuntimePythonJob
 from digitalhub_runtime_python.utils.configuration import (
-    _get_function_path,
-    _import_function_from_path,
     import_function_from_source,
     save_function_source,
 )
@@ -135,11 +133,7 @@ class RuntimeHydraSubtask(RuntimePythonJob):
 
         setup_globals()
 
-        source_spec = spec.get("source", {})
-        path = self.runtime_dir
-
-        function_path, function_name = _get_function_path(path, source_spec["handler"])
-        fnc = _import_function_from_path(function_path, function_name)
+        fnc = import_function_from_source(self.runtime_dir, spec.get("source", {}), skip_save=True)
         # treat as not wrapped, as the wrapping is done by hydra.main and we do not need to pass the extra attributes
         return fnc, False
 
