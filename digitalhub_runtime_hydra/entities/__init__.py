@@ -7,6 +7,7 @@ from digitalhub.plugins import (
     BuilderDef,
     CrudPlugin,
     ExecFamily,
+    ExecutableActions,
     FunctionBuilder,
     RunBuilder,
     SourceBuilderMixin,
@@ -17,6 +18,7 @@ from digitalhub.plugins import (
 )
 from digitalhub_runtime_python.entities.run._base.entity import RunBaseRun
 from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
+from digitalhub_runtime_python.entities.run.python_job.entity import RunPythonRunJob
 
 from digitalhub_runtime_hydra.entities._commons.enums import Actions, EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBaseBuilder
@@ -24,7 +26,6 @@ from digitalhub_runtime_hydra.entities.function.hydra.crud import new_function_h
 from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 from digitalhub_runtime_hydra.entities.run.hydra_build.spec import RunSpecHydraRunBuild
-from digitalhub_runtime_hydra.entities.run.hydra_job.entity import RunHydraRunJob
 from digitalhub_runtime_hydra.entities.run.hydra_job.spec import RunSpecHydraRunJob
 from digitalhub_runtime_hydra.entities.run.hydra_subtask.spec import RunSpecHydraRunSubtask
 from digitalhub_runtime_hydra.entities.task.hydra_build.spec import TaskSpecHydraBuild
@@ -45,7 +46,7 @@ hydra = ExecFamily(
         shortcuts=(CrudPlugin(new_function_hydra),),
     ),
     actions={
-        Actions.BUILD: Action(
+        ExecutableActions.BUILD: Action(
             task=BuilderDef(EntityKinds.TASK_HYDRA_BUILD, Task, TaskSpecHydraBuild, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_HYDRA_BUILD, RunBaseRun, RunSpecHydraRunBuild, RunStatusBaseRun, base=RunBuilder
@@ -54,7 +55,7 @@ hydra = ExecFamily(
         Actions.JOB: Action(
             task=BuilderDef(EntityKinds.TASK_HYDRA_JOB, Task, TaskSpecFunction, Status, base=TaskBuilder),
             run=BuilderDef(
-                EntityKinds.RUN_HYDRA_JOB, RunHydraRunJob, RunSpecHydraRunJob, RunStatusBaseRun, base=RunBuilder
+                EntityKinds.RUN_HYDRA_JOB, RunPythonRunJob, RunSpecHydraRunJob, RunStatusBaseRun, base=RunBuilder
             ),
             runtime_builder=RUNTIME_HYDRA_JOB_BUILDER,
         ),
@@ -62,7 +63,7 @@ hydra = ExecFamily(
             task=BuilderDef(EntityKinds.TASK_HYDRA_SUBTASK, Task, TaskSpecFunction, Status, base=TaskBuilder),
             run=BuilderDef(
                 EntityKinds.RUN_HYDRA_SUBTASK,
-                RunHydraRunJob,
+                RunPythonRunJob,
                 RunSpecHydraRunSubtask,
                 RunStatusBaseRun,
                 base=RunBuilder,

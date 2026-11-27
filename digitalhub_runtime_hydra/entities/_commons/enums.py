@@ -26,7 +26,6 @@ class Actions(Enum):
     Task actions.
     """
 
-    BUILD = "build"
     JOB = "job"
     SERVE = "serve"
     SUBTASK = "subtask"
