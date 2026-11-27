@@ -6,18 +6,13 @@ import sys
 from collections.abc import Callable
 
 import yaml
+from digitalhub.plugins import fetch_source
 from digitalhub.utils.generic_utils import decode_base64_string
 from digitalhub.utils.logger.logger import get_logger
 from digitalhub_runtime_python.runtimes.runtime import RuntimePython, RuntimePythonJob
 from digitalhub_runtime_python.utils.configuration import (
-    _clone_git_source,
-    _download_remote_source,
-    _download_s3_source,
     _get_function_path,
     _import_function_from_path,
-    has_git_scheme,
-    has_remote_scheme,
-    has_s3_scheme,
     import_function_from_source,
     save_function_source,
 )
@@ -103,18 +98,7 @@ class RuntimeHydraJob(RuntimePythonJob):
             # download config to runtime dir
             elif "source" in config:
                 path = self.runtime_dir / "config"
-                source = config["source"]
-                if has_git_scheme(source):
-                    _clone_git_source(path, source)
-                # Remote HTTP(S) source
-                elif has_remote_scheme(source):
-                    _download_remote_source(path, source)
-                # S3 source
-                elif has_s3_scheme(source):
-                    _download_s3_source(path, source)
-                # Unsupported scheme
-                else:
-                    raise RuntimeError(f"Unable to collect source from: {source}")
+                fetch_source(path, config["source"])
                 if "path" in config:
                     path = path / config["path"]
                 sys.argv = args + [f"--config-path={path.absolute()}"]
