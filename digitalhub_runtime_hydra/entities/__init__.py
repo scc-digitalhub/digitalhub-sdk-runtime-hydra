@@ -16,6 +16,7 @@ from digitalhub.plugins import (
     TaskBuilder,
     TaskSpecFunction,
 )
+from digitalhub_runtime_python.entities.function.python.entity import FunctionPython
 from digitalhub_runtime_python.entities.run._base.entity import RunBaseBuildRun
 from digitalhub_runtime_python.entities.run._base.status import RunStatusBaseRun
 from digitalhub_runtime_python.entities.run.python_job.entity import RunPythonRunJob
@@ -23,7 +24,6 @@ from digitalhub_runtime_python.entities.run.python_job.entity import RunPythonRu
 from digitalhub_runtime_hydra.entities._commons.enums import Actions, EntityKinds
 from digitalhub_runtime_hydra.entities.function.hydra.builder import FunctionHydraBaseBuilder
 from digitalhub_runtime_hydra.entities.function.hydra.crud import new_function_hydra
-from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 from digitalhub_runtime_hydra.entities.run.hydra_build.spec import RunSpecHydraRunBuild
 from digitalhub_runtime_hydra.entities.run.hydra_job.spec import RunSpecHydraRunJob
@@ -39,7 +39,7 @@ RUNTIME_HYDRA_SUBTASK_BUILDER = "digitalhub_runtime_hydra.runtimes.builder:Runti
 hydra = ExecFamily(
     executable=BuilderDef(
         EntityKinds.FUNCTION_HYDRA,
-        FunctionHydra,
+        FunctionPython,
         FunctionSpecHydra,
         Status,
         base=FunctionHydraBaseBuilder,

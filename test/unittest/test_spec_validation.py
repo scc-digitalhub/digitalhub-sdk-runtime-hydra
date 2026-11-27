@@ -5,14 +5,14 @@
 from types import SimpleNamespace
 from unittest.mock import Mock
 
-import digitalhub_runtime_python.entities.function._base.entity as python_entity_module
+import digitalhub_runtime_python.entities.function.python.entity as python_entity_module
 import pytest
 from digitalhub.factory.registry import registry
 from digitalhub.plugins import Function
+from digitalhub_runtime_python.entities.function.python.entity import FunctionPython
 from pydantic import ValidationError
 
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
-from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
 from digitalhub_runtime_hydra.entities.function.hydra.models import HydraConfig, HydraSourceCode
 from digitalhub_runtime_hydra.entities.function.hydra.spec import FunctionSpecHydra
 
@@ -29,7 +29,7 @@ def test_function_spec_validates_nested_source_and_config_models() -> None:
 
 def test_hydra_export_restores_typed_config_after_export(monkeypatch, tmp_path) -> None:
     config = HydraConfig(path="config.yaml", base64="Y29uZmln")
-    function = object.__new__(FunctionHydra)
+    function = object.__new__(FunctionPython)
     function.spec = FunctionSpecHydra(
         source={"source": "remote-source", "handler": "main"},
         config=config,

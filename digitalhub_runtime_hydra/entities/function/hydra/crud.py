@@ -11,7 +11,7 @@ from digitalhub.entities.function.crud import new_function
 from digitalhub_runtime_hydra.entities._commons.enums import EntityKinds
 
 if typing.TYPE_CHECKING:
-    from digitalhub_runtime_hydra.entities.function.hydra.entity import FunctionHydra
+    from digitalhub_runtime_python.entities.function.python.entity import FunctionPython
 
 
 def new_function_hydra(
@@ -39,7 +39,7 @@ def new_function_hydra(
     description: str | None = None,
     labels: list[str] | None = None,
     embedded: bool = False,
-) -> FunctionHydra:
+) -> FunctionPython:
     """
     Create a Hydra function entity.
 
