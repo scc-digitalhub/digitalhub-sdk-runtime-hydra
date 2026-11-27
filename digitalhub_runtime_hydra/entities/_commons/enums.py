@@ -27,5 +27,4 @@ class Actions(Enum):
     """
 
     JOB = "job"
-    SERVE = "serve"
     SUBTASK = "subtask"
